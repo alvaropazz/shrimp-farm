@@ -18,10 +18,12 @@ Install the dependencies and modules
 $ npm install
 ```
 
-Run server and open the local host
+Run build
 ```sh
-$ npx webpack-dev-server
+$ npm run build
 ```
+
+Open index.html 
 
 ## Usage
 
