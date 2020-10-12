@@ -16,6 +16,7 @@ if (allProjects === undefined) {
     project.tasks.forEach((task, chIndex) => {
       createTask(
         task.taskName,
+        task.size,
         index,
         chIndex,
       );
@@ -46,14 +47,17 @@ taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const form = e.target;
   const task = form.querySelector('input[name="task-name"]').value;
-  const cTask = new Pond(task);
+  const size = form.querySelector('input[name="task-size"]').value;
+  const cTask = new Pond(task, size);
   const parent = form.parentElement;
   const parIndex = parent.getAttribute('data-index');
   Storage.addTask(cTask, parIndex);
   const allProjects = Storage.getProjects();
   const taskParent = allProjects[parIndex];
   const taskArr = taskParent.tasks.length - 1;
-  createTask(cTask.taskName,
+  createTask(
+    cTask.taskName,
+    cTask.size,
     parIndex,
     taskArr);
 
@@ -90,9 +94,21 @@ taskForm.addEventListener('click', (e) => {
     const task = e.target.parentElement.getAttribute('data-task');
     const specific = document.querySelector(`div[data-index="${project}"]`);
     const subsp = specific.querySelector(`div[data-task="${task}"]`);
-    const newV = subsp.querySelector('.task-desc');
-    const userVersion = newV.innerHTML;
-    Storage.updateTsName(project, task, userVersion);
+    const nameSelect = subsp.querySelector('.task-desc');
+    const sizeSelect = subsp.querySelector('.task-size');
+    const newName = nameSelect.innerHTML;
+    const newSize = sizeSelect.innerHTML
+    Storage.updateTsName(project, task, newName, newSize);
+  } else if (e.target.className === 'fas fa-check'){
+    const project = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+    const task = e.target.parentElement.parentElement.getAttribute('data-task');
+    const specific = document.querySelector(`div[data-index="${project}"]`);
+    const subsp = specific.querySelector(`div[data-task="${task}"]`);
+    const nameSelect = subsp.querySelector('.task-desc');
+    const sizeSelect = subsp.querySelector('.task-size');
+    const newName = nameSelect.innerHTML;
+    const newSize = sizeSelect.innerHTML
+    Storage.updateTsName(project, task, newName, newSize);
   }
 });
 
@@ -109,9 +125,11 @@ taskForm.addEventListener('click', (e) => {
   if (e.target.className === 'edit-prjct') {
     const parProjectIndex = e.target.parentElement.getAttribute('data-index');
     const origen = document.querySelector(`div[data-index="${parProjectIndex}"]`);
-    const editablee = origen.querySelector('.to-do-title');
-    const userVersion = editablee.innerHTML;
-    Storage.updatePrName(parProjectIndex, userVersion);
+    const newTitle = origen.querySelector('.to-do-title');
+    const newDesc = origen.querySelector('.to-do-description');
+    const userT = newTitle.innerHTML;
+    const userD =newDesc.innerHTML
+    Storage.updatePrName(parProjectIndex, userT, userD);
   }
 });
 

@@ -30,9 +30,10 @@ export function deleteProject(project) {
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function updatePrName(project, prName) {
+export function updatePrName(project, prName, prDescription) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects[project].name = prName;
+  projects[project].description = prDescription;
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
@@ -49,9 +50,10 @@ export function deleteTask(task, project) {
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function updateTsName(project, task, tsName) {
+export function updateTsName(project, task, tsName, tsSize) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects[parseInt(project, 10)].tasks[task].taskName = tsName;
+  projects[parseInt(project, 10)].tasks[task].size = tsSize;
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
