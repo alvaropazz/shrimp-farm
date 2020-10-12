@@ -1,4 +1,4 @@
-export default function createNewProjectForm(attatchTo) {
+export default function newPondForm(attatchTo) {
   const createForm = document.createElement('form');
   createForm.className += 'new-task';
   const h3 = document.createElement('h3');
@@ -28,7 +28,7 @@ export default function createNewProjectForm(attatchTo) {
   const submitBtn = document.createElement('input');
   submitBtn.className += 'add-task';
   submitBtn.setAttribute('type', 'submit');
-  submitBtn.setAttribute('value', 'Add Pond');
+  submitBtn.setAttribute('value', 'ADD POND');
 
   // FINALLY, APPEND the elements Together to the form
   createForm.appendChild(h3);

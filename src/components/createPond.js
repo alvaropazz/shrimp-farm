@@ -1,17 +1,17 @@
-export default function createTask(
+export default function createPond(
   tsName,
   size,
   parentElement,
   tsIndex,
 ) {
-  const addTask = document.querySelector(`div[data-index="${parentElement}"]`);
-  const newTask = document.createElement('div');
-  newTask.className += 'task-list';
-  newTask.setAttribute('data-task', `${tsIndex}`);
-  
+  const addPond = document.querySelector(`div[data-index="${parentElement}"]`);
+  const newPond = document.createElement('div');
+  newPond.className += 'pond-list';
+  newPond.setAttribute('data-task', `${tsIndex}`);
+
   const span = document.createElement('span');
   span.className += 'task-text';
-  
+
   const p1 = document.createElement('p');
   p1.className += 'task-desc';
   p1.setAttribute('contentEditable', 'true');
@@ -32,13 +32,12 @@ export default function createTask(
   const check = document.createElement('i');
   check.className += 'fas fa-check';
 
-
-  addTask.appendChild(newTask);
-  newTask.appendChild(span);
+  addPond.appendChild(newPond);
+  newPond.appendChild(span);
   span.appendChild(p1);
   span.appendChild(p2);
-  newTask.appendChild(deleteButton);
+  newPond.appendChild(deleteButton);
   deleteButton.appendChild(trashBin);
-  newTask.appendChild(editButton);
-  editButton.appendChild(check); 
+  newPond.appendChild(editButton);
+  editButton.appendChild(check);
 }

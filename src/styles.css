@@ -29,11 +29,12 @@ body {
   flex-direction: column;
   border-radius: 4px;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .navigation {
   list-style-type: none;
-  background-color: #2A9D8F;
+  background-color: #2a9d8f;
   padding: 5px 0;
   margin: 10px 0;
   text-align: center;
@@ -44,29 +45,34 @@ body {
 }
 
 .add-item {
-  background-color: #E9C46A;
+  background-color: #e9c46a;
   border: 2px solid #264653;
   color: #264653;
   font-weight: bold;
   border-radius: 4px;
   padding: 8px 12px;
-  /* margin-top: 10px; */
+  width: 200px;
 }
-.new-project{
+
+.new-project {
   display: flex;
   justify-content: center;
 }
 
-.new-project h3{
+.new-project h3 {
   margin: 0 0 10px 0;
 }
+
 .new-project .add-project {
-  border: 1px solid #22223b;
+  border: 2px solid #22223b;
   border-radius: 4px;
   text-align: center;
   padding: 7px 7px 14px 7px;
   margin: 10px 3px;
   display: none;
+  width: 420px;
+  color: #fff;
+  background-color: #e76f51;
 }
 
 .new-project .add-project .project-input {
@@ -76,9 +82,11 @@ body {
 }
 
 .new-project .add-project .submit-project {
-  background-color: #e6e6fa;
-  border: 1px solid #000;
+  background-color: #e9c46a;
+  border: 2px solid #264653;
   border-radius: 4px;
+  width: 120px;
+  padding: 4px 8px;
   margin-top: 10px;
 }
 
@@ -86,51 +94,59 @@ body {
   width: 90%;
 }
 
-.projects .task-list {
+.farm-description {
+  margin-top: 0;
+}
+
+.farm-size {
+  margin: 0 0 5px 0;
+}
+
+.projects .pond-list {
   list-style-type: none;
   padding: 5px;
 }
 
-.projects .task-list .delete-task {
-  border: 1px solid #000;
+.projects .pond-list .delete-task {
+  border: 2px solid #264653;
   border-radius: 4px;
   margin-right: 10px;
-  background-color: #E76F51;
+  background-color: #e76f51;
   height: 35px;
   width: 35px;
 }
 
-.projects .task-list .edit-task {
-  border: 1px solid #000;
+.projects .pond-list .edit-task {
+  border: 2px solid #264653;
   border-radius: 4px;
-  background-color: #E76F51;
+  background-color: #e76f51;
   height: 35px;
   width: 35px;
 }
 
-.projects .task-list .delete-task .fa-trash-alt {
+.projects .pond-list .delete-task .fa-trash-alt {
   font-size: 15px;
 }
 
-.to-do {
-  background-color: #F4A261;
+.farm-container {
+  background-color: #f4a261;
   border-radius: 4px;
   padding: 20px;
   border: 2px solid #264653;
   margin: 10px 3px;
 }
 
-.to-do .new-task {
-  background-color: #2A9D8F;
-  padding: 5px;
+.farm-container .new-task {
+  background-color: #2a9d8f;
+  margin-top: 15px;
+  padding: 15px;
   border-radius: 4px;
   color: #fff;
-  border: 1px solid #aaa;
-  display: none;
+  border: 2px solid #264653;
 }
 
-.to-do .new-task h3 {
-  margin: 3px 0 5px 0;
+.farm-container .new-task h3 {
+  margin: 0 0 5px 0;
 }
 
 .new-task .task-input {
@@ -145,13 +161,13 @@ body {
   margin-top: 5px;
 }
 
-.to-do h2 {
-  margin: 3px 0 5px 0;
+.farm-container h2 {
+  margin: 0 0 5px 0;
 }
 
-.to-do .task-list {
+.farm-container .pond-list {
   background-color: #264653;
-  border: 1px solid #ccc;
+  border: 2px solid #2a9d8f;
   border-radius: 4px;
   padding: 15px;
   margin: 10px 0;
@@ -161,57 +177,53 @@ body {
   align-items: center;
 }
 
-.to-do .task-list .task-text {
+.farm-container .pond-list .task-text {
   flex-basis: 70%;
   margin-right: 10px;
 }
 
-.to-do-description {
+.farm-container-description {
   margin: 0 0 10px 0;
 }
 
-.task-list .task-desc {
+.pond-list .task-desc {
   margin: 0;
   font-weight: bold;
 }
 
-.task-list .task-size {
+.pond-list .task-size {
   margin: 0;
 }
 
-.to-do .new-task .add-task {
-  background-color: #e6e6fa;
-  border: 1px solid #000;
+.farm-container .new-task .add-task {
+  background-color: #e9c46a;
+  border: 2px solid #264653;
   border-radius: 4px;
+  width: 120px;
+  padding: 4px 8px;
   margin-top: 10px;
+  font-weight: bold;
 }
 
-.to-do .dlt-prjct {
-  background-color: #E9C46A;
+.farm-container .dlt-farm {
+  background-color: #e9c46a;
   padding: 4px 8px;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 4px;
   margin-top: 10px;
   width: 60px;
   margin-right: 10px;
 }
 
-.to-do .edit-prjct {
-  background-color: #E9C46A;
+.farm-container .edit-farm {
+  background-color: #e9c46a;
   padding: 4px 8px;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 4px;
-  margin-top: 10px;  
+  margin-top: 10px;
   width: 60px;
 }
 
-.to-do .add-tsk {
-  background-color: #E9C46A;
-  padding: 4px 8px;
-  border: 1px solid;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  color: #264653;
-  margin-right: 166px;
-  width: 80px;
+input {
+  border: 2px solid #264653;
 }

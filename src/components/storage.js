@@ -4,7 +4,7 @@ export function createArray() {
   projects = [];
 }
 
-export function addProject(project) {
+export function addFarm(project) {
   if (localStorage.getItem('myProjects') === null) {
     createArray();
   } else {
@@ -14,7 +14,7 @@ export function addProject(project) {
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function getProjects() {
+export function getFarms() {
   if (JSON.parse(localStorage.getItem('myProjects')) === null) {
     createArray();
     return projects;
@@ -24,35 +24,47 @@ export function getProjects() {
   return projects;
 }
 
-export function deleteProject(project) {
+export function getFarmSize(project) {
+  if (JSON.parse(localStorage.getItem('myProjects')) === null) {
+    return 'Empty';
+  }
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const size = projects[project].tasks.map(
+    x => parseInt(x.size, 10),
+  ).reduce((accumulator, currentValue) => accumulator + currentValue,
+    0);
+  return size;
+}
+
+export function deleteFarm(project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects.splice(project, 1);
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function updatePrName(project, prName, prDescription) {
+export function updateFarm(project, prName, prDescription) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects[project].name = prName;
   projects[project].description = prDescription;
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function addTask(task, project) {
+export function addPond(task, project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   const index = parseInt(project, 10);
   projects[index].tasks.push(task);
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function deleteTask(task, project) {
+export function deletePond(task, project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects[parseInt(project, 10)].tasks.splice(task, 1);
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function updateTsName(project, task, tsName, tsSize) {
+export function updatePond(project, task, tsName, tsSize) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
-  projects[parseInt(project, 10)].tasks[task].taskName = tsName;
+  projects[parseInt(project, 10)].tasks[task].name = tsName;
   projects[parseInt(project, 10)].tasks[task].size = tsSize;
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
