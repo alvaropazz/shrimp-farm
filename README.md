@@ -23,7 +23,12 @@ Run build
 $ npm run build
 ```
 
-Open index.html 
+Run server
+```sh
+$ npm run server
+```
+
+A browser tab will open up; open the dist folder and enjoy the app!
 
 ## Usage
 
