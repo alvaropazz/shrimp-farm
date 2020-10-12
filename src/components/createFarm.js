@@ -27,7 +27,7 @@ export default function createFarm(name, description, prIndex) {
 
   const editFarm = document.createElement('button');
   editFarm.className += 'edit-farm';
-  editFarm.innerHTML = 'Edit';
+  editFarm.innerHTML = 'Update';
 
   addFarm.appendChild(newFarm);
   newFarm.appendChild(psize);
