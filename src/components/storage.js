@@ -53,12 +53,8 @@ export function updateFarm(project, prName, prDescription) {
 export function checkPond(task, project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   const index = parseInt(project, 10);
-  for (let i = 0; i < projects[index].tasks.length; i += 1) {
-    if (projects[index].tasks[i].name !== task.name) {
-      return true;
-    }
-    return false;
-  }
+  const exists = projects[index].tasks.some(x => x.name === task.name);
+  return exists;
 }
 
 export function addPond(task, project) {
@@ -72,6 +68,12 @@ export function deletePond(task, project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects[parseInt(project, 10)].tasks.splice(task, 1);
   localStorage.setItem('myProjects', JSON.stringify(projects));
+}
+
+export function checkUpdatePond(project, tsName) {
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const exists = projects[parseInt(project, 10)].tasks.some(x => x.name === tsName);
+  return exists;
 }
 
 export function updatePond(project, task, tsName, tsSize) {
