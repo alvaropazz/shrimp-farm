@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
 import './styles.css';
 import * as Storage from './components/storage';
 import createPond from './components/createPond';
@@ -51,16 +52,20 @@ taskForm.addEventListener('submit', (e) => {
   const cTask = new Pond(task, size);
   const parent = form.parentElement;
   const parIndex = parent.getAttribute('data-index');
-  Storage.addPond(cTask, parIndex);
-  const allProjects = Storage.getFarms();
-  const taskParent = allProjects[parIndex];
-  const taskArr = taskParent.tasks.length - 1;
-  createPond(
-    cTask.name,
-    cTask.size,
-    parIndex,
-    taskArr,
-  );
+  if (Storage.checkPond(cTask, parIndex)) {
+    Storage.addPond(cTask, parIndex);
+    const allProjects = Storage.getFarms();
+    const taskParent = allProjects[parIndex];
+    const taskArr = taskParent.tasks.length - 1;
+    createPond(
+      cTask.name,
+      cTask.size,
+      parIndex,
+      taskArr,
+    );
+  } else {
+    alert('Pond already exists.');
+  }
 
   e.target.reset();
   return true;

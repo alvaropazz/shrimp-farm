@@ -21,6 +21,7 @@ export default function newPondForm(attatchTo) {
   sizeInput.setAttribute('type', 'number');
   sizeInput.setAttribute('min', '0');
   sizeInput.setAttribute('max', '1000');
+  sizeInput.setAttribute('step', '0.01');
   sizeInput.setAttribute('name', 'task-size');
   sizeInput.setAttribute('required', '');
 
