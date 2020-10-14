@@ -52,7 +52,7 @@ taskForm.addEventListener('submit', (e) => {
   const cTask = new Pond(task, size);
   const parent = form.parentElement;
   const parIndex = parent.getAttribute('data-index');
-  if (Storage.checkPond(cTask, parIndex)) {
+  if (!Storage.checkPond(cTask, parIndex)) {
     Storage.addPond(cTask, parIndex);
     const allProjects = Storage.getFarms();
     const taskParent = allProjects[parIndex];
@@ -101,7 +101,12 @@ taskForm.addEventListener('click', (e) => {
     const sizeSelect = subsp.querySelector('.task-size');
     const newName = nameSelect.innerHTML;
     const newSize = sizeSelect.innerHTML;
-    Storage.updatePond(project, task, newName, newSize);
+    // Storage.updatePond(project, task, newName, newSize);
+    if (!Storage.checkUpdatePond(project, newName)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else {
+      alert('Name already in use.');
+    }
     location.reload();
   } else if (e.target.className === 'fas fa-check') {
     const project = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
@@ -112,7 +117,12 @@ taskForm.addEventListener('click', (e) => {
     const sizeSelect = subsp.querySelector('.task-size');
     const newName = nameSelect.innerHTML;
     const newSize = sizeSelect.innerHTML;
-    Storage.updatePond(project, task, newName, newSize);
+    // Storage.updatePond(project, task, newName, newSize);
+    if (!Storage.checkUpdatePond(project, newName)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else {
+      alert('Name already in use.');
+    }
     location.reload();
   }
 });
