@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 let projects;
 
 export function createArray() {
@@ -47,6 +48,17 @@ export function updateFarm(project, prName, prDescription) {
   projects[project].name = prName;
   projects[project].description = prDescription;
   localStorage.setItem('myProjects', JSON.stringify(projects));
+}
+
+export function checkPond(task, project) {
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const index = parseInt(project, 10);
+  for (let i = 0; i < projects[index].tasks.length; i += 1) {
+    if (projects[index].tasks[i].name !== task.name) {
+      return true;
+    }
+    return false;
+  }
 }
 
 export function addPond(task, project) {
