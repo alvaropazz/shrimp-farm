@@ -32,11 +32,15 @@ projectForm.addEventListener('submit', (e) => {
   const projectName = projectForm.querySelector('input[name="project-name"]').value;
   const projectDesc = projectForm.querySelector('input[name="project-desc"]').value;
   const projectNew = new Farm(projectName, projectDesc);
-  Storage.addFarm(projectNew);
-  const len = Storage.getFarms().length;
-  const indices = len === 0 ? len : len - 1;
-  createFarm(projectNew.name, projectNew.description, indices);
-  projectForm.reset();
+  if (!Storage.checkAddFarmName(projectName)) {
+    Storage.addFarm(projectNew);
+    const len = Storage.getFarms().length;
+    const indices = len === 0 ? len : len - 1;
+    createFarm(projectNew.name, projectNew.description, indices);
+    projectForm.reset();
+  } else {
+    alert('Name already in use.');
+  }
   if (projectForm.style.display === 'block') {
     projectForm.style.display = 'none';
   } else {
@@ -101,11 +105,18 @@ taskForm.addEventListener('click', (e) => {
     const sizeSelect = subsp.querySelector('.task-size');
     const newName = nameSelect.innerHTML;
     const newSize = sizeSelect.innerHTML;
-    // Storage.updatePond(project, task, newName, newSize);
-    if (!Storage.checkUpdatePond(project, newName)) {
-      Storage.updatePond(project, task, newName, newSize);
-    } else {
+    if (Storage.checkUpdatePondName(project, newName)
+    && !Storage.checkUpdatePondIndex(project, newName, task)) {
       alert('Name already in use.');
+    } else if (Storage.checkUpdatePondName(project, newName)
+    && Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else if (!Storage.checkUpdatePondName(project, newName)
+    && !Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else if (!Storage.checkUpdatePondName(project, newName)
+    && Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
     }
     location.reload();
   } else if (e.target.className === 'fas fa-check') {
@@ -117,11 +128,19 @@ taskForm.addEventListener('click', (e) => {
     const sizeSelect = subsp.querySelector('.task-size');
     const newName = nameSelect.innerHTML;
     const newSize = sizeSelect.innerHTML;
-    // Storage.updatePond(project, task, newName, newSize);
-    if (!Storage.checkUpdatePond(project, newName)) {
-      Storage.updatePond(project, task, newName, newSize);
-    } else {
+
+    if (Storage.checkUpdatePondName(project, newName)
+    && !Storage.checkUpdatePondIndex(project, newName, task)) {
       alert('Name already in use.');
+    } else if (Storage.checkUpdatePondName(project, newName)
+    && Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else if (!Storage.checkUpdatePondName(project, newName)
+    && !Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
+    } else if (!Storage.checkUpdatePondName(project, newName)
+    && Storage.checkUpdatePondIndex(project, newName, task)) {
+      Storage.updatePond(project, task, newName, newSize);
     }
     location.reload();
   }
@@ -144,7 +163,20 @@ taskForm.addEventListener('click', (e) => {
     const newDesc = origen.querySelector('.farm-description');
     const userT = newTitle.innerHTML;
     const userD = newDesc.innerHTML;
-    Storage.updateFarm(parProjectIndex, userT, userD);
+    if (Storage.checkUpdateFarmName(userT)
+    && !Storage.checkUpdateFarmIndex(userT, parProjectIndex)) {
+      alert('Name already in use.');
+    } else if (Storage.checkUpdateFarmName(userT)
+    && Storage.checkUpdateFarmIndex(userT, parProjectIndex)) {
+      Storage.updateFarm(parProjectIndex, userT, userD);
+    } else if (!Storage.checkUpdateFarmName(userT)
+    && !Storage.checkUpdateFarmIndex(userT, parProjectIndex)) {
+      Storage.updateFarm(parProjectIndex, userT, userD);
+    } else if (!Storage.checkUpdateFarmName(userT)
+    && Storage.checkUpdateFarmIndex(userT, parProjectIndex)) {
+      Storage.updateFarm(parProjectIndex, userT, userD);
+    }
+    location.reload();
   }
 });
 

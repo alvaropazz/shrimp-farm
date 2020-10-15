@@ -5,6 +5,16 @@ export function createArray() {
   projects = [];
 }
 
+export function checkAddFarmName(prName) {
+  if (localStorage.getItem('myProjects') === null) {
+    createArray();
+  } else {
+    projects = JSON.parse(localStorage.getItem('myProjects'));
+  }
+  const exists = projects.some(x => x.name === prName);
+  return exists;
+}
+
 export function addFarm(project) {
   if (localStorage.getItem('myProjects') === null) {
     createArray();
@@ -31,16 +41,28 @@ export function getFarmSize(project) {
   }
   projects = JSON.parse(localStorage.getItem('myProjects'));
   const size = projects[project].tasks.map(
-    x => parseInt(x.size, 10),
+    x => parseFloat(x.size, 10),
   ).reduce((accumulator, currentValue) => accumulator + currentValue,
     0);
-  return size;
+  return size.toFixed(2);
 }
 
 export function deleteFarm(project) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   projects.splice(project, 1);
   localStorage.setItem('myProjects', JSON.stringify(projects));
+}
+
+export function checkUpdateFarmIndex(prName, i) {
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const index = projects.findIndex(x => x.name === prName);
+  return index === parseInt(i, 10);
+}
+
+export function checkUpdateFarmName(prName) {
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const exists = projects.some(x => x.name === prName);
+  return exists;
 }
 
 export function updateFarm(project, prName, prDescription) {
@@ -70,7 +92,13 @@ export function deletePond(task, project) {
   localStorage.setItem('myProjects', JSON.stringify(projects));
 }
 
-export function checkUpdatePond(project, tsName) {
+export function checkUpdatePondIndex(project, tsName, i) {
+  projects = JSON.parse(localStorage.getItem('myProjects'));
+  const index = projects[parseInt(project, 10)].tasks.findIndex(x => x.name === tsName);
+  return index === parseInt(i, 10);
+}
+
+export function checkUpdatePondName(project, tsName) {
   projects = JSON.parse(localStorage.getItem('myProjects'));
   const exists = projects[parseInt(project, 10)].tasks.some(x => x.name === tsName);
   return exists;
