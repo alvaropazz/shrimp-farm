@@ -28,7 +28,8 @@ Run server
 $ npm run server
 ```
 
-A browser tab will open up; open the dist folder and enjoy the app!
+A new browser tab will open up. 
+Enjoy the app!
 
 ## Usage
 
